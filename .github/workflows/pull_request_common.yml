@@ -17,7 +17,7 @@ jobs:
     name: Add labels
     steps:
       - name: Checkout code
-        uses: actions/checkout@v5
+        uses: actions/checkout@v6
 
       - name: Patch
         if: ${{ startsWith(github.event.pull_request.title, 'fix') }}
@@ -41,7 +41,7 @@ jobs:
     if: ${{ github.event.action == 'opened' && github.event.pull_request.user.login == 'dependabot[bot]' }}
     steps:
       - name: Checkout code
-        uses: actions/checkout@v5
+        uses: actions/checkout@v6
 
       - name: Node setup
         uses: ./.github/actions/node-setup
@@ -114,9 +114,9 @@ jobs:
     name: Check code formatting
     steps:
       - name: Checkout
-        uses: actions/checkout@v5
+        uses: actions/checkout@v6
 
       - name: Node setup
         uses: ./.github/actions/node-setup
-      - name: Run Prettier
-        run: yarn run lint:prettier
+      - name: Run Biome format
+        run: yarn run lint:format
